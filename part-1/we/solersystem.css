@@ -1,0 +1,56 @@
+body {
+    height: 100vh;
+    width: 100vh;
+    position: absolute;
+}
+
+.planet{
+    width: var(--diameter);
+    height: var(--diameter);
+    top: calc(50% - var(--diameter) / 2);
+    left: calc(50% - var(--diameter) / 2);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.sun {
+    --diameter: 150px;
+    background: orange;
+}
+
+.mercury {
+    --moveX: 100px;
+    --diameter: 20px;
+    background: grey;
+    animation: solersystem 2s infinite linear;
+}
+
+.venus {
+    --moveX: 150px;
+    --diameter: 30px;
+    background: red;
+    animation: solersystem 2.5s infinite linear;
+}
+
+.earth {
+    --moveX: 230px;
+    --diameter: 70px;
+    background: aquamarine;
+    animation: solersystem 3s infinite linear;
+}
+
+.mars {
+    --moveX: 300px;
+    --diameter: 40px;
+    background: orangered;
+    animation: solersystem 4s infinite linear;
+}
+
+@keyframes solersystem {
+    from{
+        transform: rotate(0deg) translate(var( --moveX));
+    }
+    to{
+        transform: rotate(360deg) translate(var( --moveX));
+    }
+}
