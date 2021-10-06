@@ -5,6 +5,17 @@ var player = {
     currentDirection: null,
 }
 
+var gameSettings = {
+    gridHeight: 100,
+    gridWidth: 100,
+    offsetX: 100,
+    offsetY: 100,
+    gridX: 8,
+    gridY: 8,
+}
+
+var events = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"]
+
 window.addEventListener("load", function(){
     // var canvas = document.getElementById("canvas");
 
@@ -18,17 +29,6 @@ window.addEventListener("load", function(){
 
     document.addEventListener("keyup", handleDirectionChange)
 })
-
-var gameSettings = {
-    gridHeight: 100,
-    gridWidth: 100,
-    offsetX: 100,
-    offsetY: 100,
-    gridX: 8,
-    gridY: 8,
-}
-
-var events = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"]
 
 function draw(){
     var canvas = document.getElementById("canvas");
@@ -46,17 +46,6 @@ function draw(){
                 ctx.fillStyle = "brown";
                 ctx.fillRect(x, y, 100, 100)
             }
-            // player position
-            changePosition(player.currentDirection)
-            ctx.fillStyle = "white";
-            ctx.beginPath();
-            ctx.arc(
-                    player.posX,
-                    player.posY,
-                    gameSettings.gridHeight/2,
-                    0,
-                    360
-                )
             // if(player.posX === i && player.posY === j){
             //     ctx.fillStyle = "white";
 
@@ -71,9 +60,23 @@ function draw(){
             // }
         }
     }
+    
     // if(stopAnimation){
     //     return
     // }
+
+    // player position
+    changePosition(player.currentDirection)
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.arc(
+        player.posX,
+        player.posY,
+        gameSettings.gridHeight/2,
+        0,
+        360
+    )
+    ctx.fill();
     window.requestAnimationFrame(draw)
 }
 
@@ -91,12 +94,12 @@ function handleDirectionChange(e) {
             player.currentDirection = "right"
             break;
         }
-        case "ArrowUp": {
-            player.currentDirection = "up"
-            break;
-        }
         case "ArrowDown": {
             player.currentDirection = "down"
+            break;
+        }
+        case "ArrowUp": {
+            player.currentDirection = "up"
             break;
         }
         default: {
@@ -130,19 +133,19 @@ function changePosition(direction) {
             }
             break;
         }
-        case "up": {
+        case "down": {
             if(player.posY - 50 > yMax){
-                player.posY = yMax + 50;
+                player.posY = yMin - 50;
             } else {
-                player.posY = player.posY - 1;
+                player.posY = player.posY + 1;
             }
             break;
         }
-        case "down": {
+        case "up": {
             if(player.posY + 50 < yMin){
-                player.posY = 0;
+                player.posY = yMax + 50;
             } else {
-                player.posY = player.posY + 1;
+                player.posY = player.posY - 1;
             }
             break;
         }
@@ -150,7 +153,7 @@ function changePosition(direction) {
             return
         }
     }
-    draw()
+    // draw()
 }
 
 // setInterval(()=> {
