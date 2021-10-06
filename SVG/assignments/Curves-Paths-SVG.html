@@ -5,43 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curves, Paths SVG</title>
-    <style>
-        .move-waves {
-            animation: move 2000ms linear infinite;
-        }
-        @keyframes move{
-            from{
-                transform: translate(-100px);
-            }
-            to{
-                transform: translate(0px);
-            }
-        }
-    </style>
 </head>
 <body>
     <svg width="400" height="400" viewBox="0 0 400 400">
-        <defs>
-            <polyline
-                class="move-waves"
-                points="100 200 150 150 200 200 250 150 300 200 350 150 400 200"
-                stroke="black"
-                fill="none"
-                stroke-width="10"
-                id="path-wave"
-            />
-        </defs>
-        <!-- clip path -->
-        <clipPath id="circle">
-            <circle cx="200" cy="200" r="100" fill="none"/>
-        </clipPath>
-        <circle cx="200" cy="200" r="100" fill="pink"/>
-        <g clip-path="url(#circle)">
-            <use href="#path-wave" x="0" y="-50" />
-            <use href="#path-wave" x="0" y="0" />
-            <use href="#path-wave" x="0" y="50" />
-            <use href="#path-wave" x="0" y="100" />
-        </g>
+        <path
+            d="M 20 70 C 40 10, 65 10, 95 80, S 150 150, 180 80"
+            fill="none"
+            stroke="black"
+        />
     </svg>
 </body>
 </html>
