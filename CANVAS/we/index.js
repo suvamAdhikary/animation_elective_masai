@@ -115,31 +115,31 @@ function changePosition(direction) {
     var yMax = gameSettings.gridHeight * gameSettings.gridY + gameSettings.offsetY;
     switch(direction){
         case "left": {
-            if(player.posX < xMin){
-                player.posX = xMax;
+            if(player.posX + 50 < xMin){
+                player.posX = xMax + 50;
             } else {
                 player.posX = player.posX -1;
             }
             break;
         }
         case "right": {
-            if(player.posX > xMax) {
-                player.posX = 0;
+            if(player.posX - 50 > xMax) {
+                player.posX = gameSettings.offsetX - 50;
             } else {
                 player.posX = player.posX + 1;
             }
             break;
         }
         case "up": {
-            if(player.posY > yMax){
-                player.posY = gameSettings.gridY;
+            if(player.posY - 50 > yMax){
+                player.posY = yMax + 50;
             } else {
                 player.posY = player.posY - 1;
             }
             break;
         }
         case "down": {
-            if(player.posY < yMin){
+            if(player.posY + 50 < yMin){
                 player.posY = 0;
             } else {
                 player.posY = player.posY + 1;
